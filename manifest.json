@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-reveal",
+	"name": "Obsidian reveal",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Add a button to show/hide the .obsidian folder in the file explorer",
+	"author": "Infinition",
+	"authorUrl": "https://github.com/infinition",
+	"isDesktopOnly": false
+}

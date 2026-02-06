@@ -1,0 +1,28 @@
+/* Styles pour le plugin Reveal .obsidian */
+
+/* Style du bouton dans le ribbon quand actif */
+.side-dock-ribbon-action.is-revealed {
+    color: var(--text-accent);
+}
+
+/* Style du bouton dans l'explorateur */
+.reveal-obsidian-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out;
+}
+
+.reveal-obsidian-button:hover {
+    color: var(--text-accent);
+}
+
+/* Animation du bouton */
+.reveal-obsidian-button svg {
+    transition: transform 0.2s ease-in-out;
+}
+
+.reveal-obsidian-button:hover svg {
+    transform: scale(1.1);
+}
