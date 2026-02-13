@@ -1,4 +1,4 @@
 Contact: https://github.com/infinition/obsidian-reveal/issues
-Expires: 2027-02-12T05:22:21.000Z
+Expires: 2027-02-13T05:19:08.000Z
 Preferred-Languages: en, fr
 Policy: https://github.com/infinition/obsidian-reveal/blob/wiki/SECURITY.md
