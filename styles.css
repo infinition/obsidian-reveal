@@ -26,3 +26,16 @@
 .reveal-obsidian-button:hover svg {
     transform: scale(1.1);
 }
+
+/* Neutraliser la couleur d'accentuation Obsidian sur les dossiers virtuels .obsidian */
+.virtual-obsidian-item .nav-folder-title-content,
+.virtual-obsidian-item .nav-folder-title-content:hover,
+.virtual-obsidian-item.is-root .nav-folder-title-content,
+.virtual-obsidian-item.is-root .nav-folder-title-content:hover {
+    color: var(--nav-item-color) !important;
+}
+
+.virtual-obsidian-item .nav-folder-title,
+.virtual-obsidian-item.is-root .nav-folder-title {
+    color: var(--nav-item-color) !important;
+}

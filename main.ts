@@ -3699,7 +3699,7 @@ export default class RevealObsidianPlugin extends Plugin {
 
 		// CrÃ©er l'Ã©lÃ©ment DOM du dossier principal .obsidian
 		const obsidianFolderEl = this.createFolderDOM(configDir, obsidianContent, true);
-		
+
 		// InsÃ©rer en premier dans le conteneur
 		containerEl.insertBefore(obsidianFolderEl, containerEl.firstChild);
 		this.virtualElements.push(obsidianFolderEl);
@@ -3712,7 +3712,7 @@ export default class RevealObsidianPlugin extends Plugin {
 		return configDir && configDir.length > 0 ? configDir : '.obsidian';
 	}
 
-	private async readObsidianFolder(folderPath: string): Promise<{folders: string[], files: string[]}> {
+	private async readObsidianFolder(folderPath: string): Promise<{ folders: string[], files: string[] }> {
 		try {
 			const adapter = this.app.vault.adapter;
 			const result = await adapter.list(folderPath);
@@ -3723,7 +3723,7 @@ export default class RevealObsidianPlugin extends Plugin {
 		}
 	}
 
-	private async readSubFolder(folderPath: string): Promise<{folders: string[], files: string[]}> {
+	private async readSubFolder(folderPath: string): Promise<{ folders: string[], files: string[] }> {
 		try {
 			const adapter = this.app.vault.adapter;
 			const result = await adapter.list(folderPath);
@@ -3734,7 +3734,7 @@ export default class RevealObsidianPlugin extends Plugin {
 		}
 	}
 
-	private createFolderDOM(folderPath: string, content: {folders: string[], files: string[]}, isRoot: boolean = false): HTMLElement {
+	private createFolderDOM(folderPath: string, content: { folders: string[], files: string[] }, isRoot: boolean = false): HTMLElement {
 		const folderName = folderPath.split('/').pop() || folderPath;
 
 		// Conteneur du dossier
@@ -3755,11 +3755,13 @@ export default class RevealObsidianPlugin extends Plugin {
 		setIcon(collapseIcon, 'right-triangle');
 		titleEl.appendChild(collapseIcon);
 
-		// IcÃ´ne de dossier
-		const folderIconEl = document.createElement('div');
-		folderIconEl.className = 'tree-item-icon';
-		setIcon(folderIconEl, 'folder');
-		titleEl.appendChild(folderIconEl);
+		// Icône de dossier (uniquement pour les sous-dossiers, pas pour la racine .obsidian)
+		if (!isRoot) {
+			const folderIconEl = document.createElement('div');
+			folderIconEl.className = 'tree-item-icon';
+			setIcon(folderIconEl, 'folder');
+			titleEl.appendChild(folderIconEl);
+		}
 
 		// Nom du dossier
 		const titleContent = document.createElement('div');
@@ -3801,9 +3803,9 @@ export default class RevealObsidianPlugin extends Plugin {
 		titleEl.addEventListener('click', async (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			
+
 			const isCollapsed = folderEl.hasClass('is-collapsed');
-			
+
 			if (isCollapsed) {
 				// Ouvrir le dossier
 				folderEl.removeClass('is-collapsed');
@@ -3933,7 +3935,7 @@ export default class RevealObsidianPlugin extends Plugin {
 
 	private showFileContextMenu(event: MouseEvent, filePath: string) {
 		const menu = new Menu();
-		
+
 		menu.addItem((item) => {
 			item.setTitle(tr(this.app, 'openInObsidian'))
 				.setIcon('file-text')

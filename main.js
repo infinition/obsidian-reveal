@@ -3469,10 +3469,12 @@ var RevealObsidianPlugin = class extends import_obsidian.Plugin {
     collapseIcon.className = "tree-item-icon collapse-icon nav-folder-collapse-indicator is-collapsed";
     (0, import_obsidian.setIcon)(collapseIcon, "right-triangle");
     titleEl.appendChild(collapseIcon);
-    const folderIconEl = document.createElement("div");
-    folderIconEl.className = "tree-item-icon";
-    (0, import_obsidian.setIcon)(folderIconEl, "folder");
-    titleEl.appendChild(folderIconEl);
+    if (!isRoot) {
+      const folderIconEl = document.createElement("div");
+      folderIconEl.className = "tree-item-icon";
+      (0, import_obsidian.setIcon)(folderIconEl, "folder");
+      titleEl.appendChild(folderIconEl);
+    }
     const titleContent = document.createElement("div");
     titleContent.className = "tree-item-inner nav-folder-title-content";
     titleContent.textContent = folderName;
