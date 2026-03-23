@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-reveal",
-	"version": "1.0.0",
+	"version": "1.1.1",
 	"description": "Plugin Obsidian pour afficher/masquer le dossier .obsidian",
 	"main": "main.js",
 	"scripts": {
@@ -14,7 +14,7 @@
 		"reveal",
 		"hidden-files"
 	],
-	"author": "Infinition",
+	"author": "Fabien Polly (Infinition)",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
