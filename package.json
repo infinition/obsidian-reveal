@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-reveal",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Plugin Obsidian pour afficher/masquer le dossier .obsidian",
 	"main": "main.js",
 	"scripts": {
