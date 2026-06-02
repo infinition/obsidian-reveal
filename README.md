@@ -1,154 +1,87 @@
-﻿# Reveal .obsidian
+# Reveal .obsidian
 
-Reveal `.obsidian` directly inside Obsidian's File Explorer, then open and edit configuration files in a dedicated in-app editor.
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) [![Release](https://img.shields.io/github/v/release/infinition/obsidian-reveal?style=flat)](https://github.com/infinition/obsidian-reveal/releases) [![Obsidian Plugin](https://img.shields.io/badge/Obsidian-Plugin-7C3AED?style=flat&logo=obsidian&logoColor=white)](https://obsidian.md/plugins?id=reveal) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/infinition)
 
-## Translations
+Reveals the `.obsidian` config directory inside Obsidian's File Explorer, and lets you open and edit vault configuration files in a dedicated in-app editor with CSS-aware token editing.
 
-- French: `README.fr.md`
-- Spanish: `README.es.md`
-- German: `README.de.md`
-- Italian: `README.it.md`
-- Portuguese: `README.pt.md`
+Plugin ID: `obsidian-reveal`
 
-## What This Plugin Does
+Translations: [French](README.fr.md) | [Spanish](README.es.md) | [German](README.de.md) | [Italian](README.it.md) | [Portuguese](README.pt.md)
 
-`Reveal .obsidian` adds a toggle button to the File Explorer header to show or hide your vault config directory (`.obsidian`) as a virtual top-level folder.
+---
 
-When revealed, you can:
-- Browse `.obsidian` folders and files from the Explorer.
-- Open config files in a dedicated editor view inside Obsidian.
-- Use contextual tools to copy absolute paths or reveal items in your system file explorer.
+## What it does
 
-## Core Features
+Adds a toggle button to the File Explorer header. When toggled on, `.obsidian` appears as a virtual top-level folder.
 
-- Explorer toggle button with active/inactive state.
-- Command Palette command to toggle visibility:
-  - `Afficher/Masquer le dossier .obsidian` (current command label).
-- Virtual `.obsidian` tree injected at the top of the Explorer.
-- Lazy loading of subfolders for fast navigation.
-- Context menus on files and folders:
-  - Open in Obsidian.
-  - Reveal in system explorer.
-  - Copy absolute path.
-- Custom config editor view with:
-  - Save action.
-  - Undo/redo controls.
-  - Optional live save mode.
-  - Reload action.
-  - Inline token highlighting and popover editors for CSS-like values.
+From there you can:
 
-## Interactive Editor Capabilities
+- Browse all folders and files inside `.obsidian`.
+- Open any file in a dedicated config editor view inside Obsidian.
+- Copy the absolute path of any file or folder.
+- Reveal files in your system file explorer.
 
-The built-in config editor detects and edits common CSS tokens directly from the file content:
-- Colors (`#hex`, `rgb[a]()`, `hsl[a]()`, `var(--token)` when resolvable).
-- Gradients (`linear-gradient`, `radial-gradient`, `conic-gradient`).
-- Numeric values with units (slider + numeric input where relevant).
-- Common enum values for many CSS properties (display, position, alignment, text, animation, etc.).
-- `transform` values (translate/rotate/skew/scale/perspective controls).
-- `box-shadow` and `text-shadow` (multi-shadow editing with add/remove controls).
+---
 
-This is especially useful for:
-- `.obsidian/snippets/*.css`
-- Theme/style-related plugin configs
-- Any text-based vault config files you want to edit in place
+## Config editor features
+
+The editor detects CSS tokens inline and provides popover controls for editing them without touching the raw text:
+
+- Colors: `#hex`, `rgb()`, `hsl()`, resolved `var(--token)`.
+- Gradients: `linear-gradient`, `radial-gradient`, `conic-gradient`.
+- Numeric values with units (slider + numeric input).
+- CSS enum values for common properties (display, position, alignment, animation, etc.).
+- Transform functions (translate, rotate, skew, scale, perspective).
+- `box-shadow` and `text-shadow` with add/remove controls.
+
+Especially useful for editing `.obsidian/snippets/*.css` and style-related plugin configs.
+
+---
 
 ## Installation
 
-### Option 1: Install with BRAT (recommended for community plugins not in the official catalog)
+**Via BRAT** (recommended for beta plugins):
+1. Install and enable BRAT in Obsidian.
+2. Open BRAT settings and add: `infinition/obsidian-reveal`.
 
-1. Install and enable the **BRAT** plugin in Obsidian.
-2. Open BRAT settings.
-3. Select **Add Beta plugin**.
-4. Enter this repository path: `infinition/obsidian-reveal`
-5. Install the plugin, then enable **Reveal .obsidian** in Community Plugins.
+**Manual**:
+1. Create `<vault>/.obsidian/plugins/obsidian-reveal/`.
+2. Copy `manifest.json`, `main.js`, `styles.css` into it.
+3. Restart Obsidian and enable the plugin.
 
-### Option 2: Manual Installation
+**From source**:
+```bash
+git clone https://github.com/infinition/obsidian-reveal.git
+npm install
+npm run build
+# copy manifest.json, main.js, styles.css to your vault's plugin folder
+```
 
-1. Create the plugin folder:
-   - `<your-vault>/.obsidian/plugins/obsidian-reveal`
-2. Place these files in that folder:
-   - `manifest.json`
-   - `main.js`
-   - `styles.css`
-3. Restart Obsidian (or reload plugins).
-4. Enable **Reveal .obsidian** in:
-   - `Settings -> Community plugins`
-
-### Option 3: Manual Installation from Source
-
-1. Clone this repository.
-2. Install dependencies:
-   - `npm install`
-3. Build the plugin:
-   - `npm run build`
-4. Copy the built files into:
-   - `<your-vault>/.obsidian/plugins/obsidian-reveal`
-5. Ensure these files exist in that folder:
-   - `manifest.json`
-   - `main.js`
-   - `styles.css`
-6. Enable the plugin in `Settings -> Community plugins`.
+---
 
 ## Usage
 
-1. Open the File Explorer panel.
-2. Click the reveal button (eye icon) in the explorer action bar.
-3. Browse the virtual `.obsidian` folder at the top of the tree.
-4. Click a file to open it in the plugin's config editor view.
-5. Hover supported tokens to open quick-edit popovers.
-6. Save changes with the save action in the view header.
+1. Open the File Explorer.
+2. Click the eye icon in the explorer action bar (or run the command from the palette).
+3. Browse `.obsidian` at the top of the tree.
+4. Click a file to open it in the config editor.
+5. Hover a supported token to open the quick-edit popover.
+6. Save with the save action in the view header.
 
-Alternative trigger:
-- Run the command palette action `Afficher/Masquer le dossier .obsidian`.
+---
 
-## Compatibility Notes
+## Star History
 
-- Designed for Obsidian desktop workflows.
-- The "Reveal in system explorer" context action depends on desktop/Electron capabilities.
-- No dedicated settings tab is currently exposed.
+<a href="https://www.star-history.com/?repos=infinition%2Fobsidian-reveal&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=infinition/obsidian-reveal&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=infinition/obsidian-reveal&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=infinition/obsidian-reveal&type=date&legend=top-left" />
+ </picture>
+</a>
 
-## Development
+---
 
-### Prerequisites
+## License
 
-- Node.js 16+ (recommended)
-- npm
-
-### Setup
-
-```bash
-npm install
-```
-
-### Development Build (watch)
-
-```bash
-npm run dev
-```
-
-### Production Build
-
-```bash
-npm run build
-```
-
-Build output files used by Obsidian:
-- `main.js`
-- `manifest.json`
-- `styles.css`
-
-## Troubleshooting
-
-- The reveal button does not appear:
-  - Open the File Explorer panel and wait for the workspace to finish loading.
-- `.obsidian` is visible but empty:
-  - Verify your vault path and that `.obsidian` exists in the vault root.
-- "Reveal in system explorer" does nothing:
-  - This action is desktop/Electron-dependent and may not work in restricted environments.
-
-## Project Metadata
-
-- Plugin ID: `obsidian-reveal`
-- Name: `Reveal .obsidian`
-- Author: `Infinition`
-- License: MIT
+MIT. See [LICENSE](LICENSE).
